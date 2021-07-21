@@ -1,22 +1,56 @@
-# tufte-pandoc-jekyll
+# tufte-mistakes
 
-This is a Jekyll theme for using Tufte CSS alongside `pandoc-sidenote`. It's
-based off of
+This is a drop-in set of files for customizing the [Minimal Mistakes]
+Jekyll theme with styles and page layouts from the [Tufte Pandoc Jekyll]
+theme. This project has been forked from the Tufte Pandoc theme and
+tries to keep up with its features and version numbering.
 
-- [Tufte CSS] for the original CSS file
-- [Tufte Pandoc CSS] uses Markdown in conjunction with Tufte CSS
+:warning: *This is not a self-contained theme and still requires Minimal
+Mistakes to be installed*.
+
+[Minimal Mistakes]: https://mmistakes.github.io/minimal-mistakes/
+[Tufte Pandoc Jekyll]: https://github.com/jez/tufte-pandoc-jekyll
+
+## Rationale
+
+One might think, at first, that blending the minimalistic [Tufte CSS] with a
+highly structured theme such as Minimal Mistakes would debase both
+projects, so why bother? For starters, the Minimal Mistakes framework is
+quite flexible and can easily be made very plain—all you have to do is
+edit a few data and config files to disable the bells and whistles. Even
+then, should you require the occasional frills or the robust support
+Minimal Mistakes has for authors, archives, and collections, they are
+easy to activate.
+
+## Features
+
+- [Tufte Pandoc CSS] forked from the [Tufte Pandoc Jekyll] theme (requires
+  [Pandoc sidenote])
+- Sass file structure from [Minimal Mistakes], including the ability to
+  customize variables
+- Sidenotes and margin notes are expanded only in the `wide` and
+  `splash` page classes (see the Minimal Mistakes docs); elsewhere they
+  use the toggle button for narrow screens
+- Supports utility classes in Minimal Mistakes (use the Pandoc syntax
+  `{.text-center}` rather than the Kramdown `{: .text-center}` and so
+  on)
 
 [Tufte CSS]: https://edwardtufte.github.io/tufte-css/
 [Tufte Pandoc CSS]: https://jez.io/tufte-pandoc-css/
-
-You may ask, "What's the difference between this and `tufte-jekyll`?"
-
-Using `pandoc-sidenote`, we don't have to use `{% sidenote %}...{% sidenote %}`
-and can instead just use `[^1]` like normal Pandoc markdown.
-
-For a demo, see <https://jez.io/talks/>.
+[Pandoc sidenote]: https://github.com/jez/pandoc-sidenote
 
 ## Installation
+
+1. Download the repository folder to the root of your project and rename
+   it to `_sass` (or add it as a submodule to keep up with future
+   updates).
+2. Edit `_config.yml` and `Gemfile` in your project as shown below.
+3. All dependencies for [Tufte Pandoc Jekyll] and [Minimal Mistakes]
+   apply, so check them carefully.
+
+Follow the instructions below from the Tufte Pandoc Jekyll README:
+
+<blockquote>
 
 There are two external dependencies in order to use this theme. You can install
 them through your package manager (like `apt-get` or `brew`):
@@ -28,16 +62,32 @@ brew install pandoc
 brew install jez/formulae/pandoc-sidenote
 ```
 
+</blockquote>
+
+Or feel free to use my docker container that comes preinstalled with
+Pandoc, Jekyll, and Pandoc-sidenote:
+
+```
+docker run --rm -v "`pwd`:/srv/jekyll" \
+  palazzo/jekyll-tufte /bin/bash -c \
+  "chmod 777 /srv/jekyll && jekyll build"
+```
+
+See the [Jekyll-Docker] project for more details on how to build your
+website out of a Docker container.
+
+[Jekyll-Docker]: https://github.com/envygeeks/jekyll-docker/
+
 Next, add this line to your Jekyll site's Gemfile:
 
 ```ruby
-gem "tufte-pandoc-jekyll"
+gem "minimal-mistakes-jekyll"
 ```
 
 And add these lines to your Jekyll site's `_config.yml`:
 
 ```yaml
-theme: tufte-pandoc-jekyll
+theme: minimal-mistakes
 
 gems:
   - jekyll-pandoc
@@ -47,11 +97,6 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install tufte-pandoc-jekyll
-
-
 ## Usage
 
 > Note: while `tufte-pandoc-css` optionally includes the Solarized Light
@@ -59,33 +104,12 @@ Or install it yourself as:
 > probably fine for you, but if it's not, feel free to make a PR that allows
 > opting out.
 
-### Variables
+### Customization
 
-The following variables are used by this theme.
+See the [Minimal Mistakes Stylesheets] documentation to find out where
+to find the variables you might want to customize.
 
-- `site.title`
-- `site.author`
-  - Note that this theme currently only supports one author.
-- `site.baseurl`
-  - Make sure you don't have a trailing slash here
-- `site.header_includes`
-- `page.header_includes`
-  - You can use these to include raw HTML in the `<head>`
-- `site.include_after`
-- `page.include_after`
-  - You can use these to include raw HTML in the `<body>` before the content
-- `site.include_before`
-- `page.include_before`
-  - You can use these to include raw HTML in the `<body>` after the content
-- `page.layout`
-  - Pick one of `index`, `page`, or `post`
-  - `index` won't have a "Return home" link at the bottom of the page
-- `page.title`
-- `page.subtitle`
-- `page.date`
-- `page.keywords`
-- `page.math`
-  - If `true`, we'll include KaTeX for displaying math formulas
+[Minimal Mistakes Stylesheets]: https://mmistakes.github.io/minimal-mistakes/docs/stylesheets/
 
 ### `_config.yml`
 
@@ -106,6 +130,12 @@ pandoc:
 
 Optional: remove `section-divs` if you want to insert `<section>` tags manually.
 
+:warning: The automatic table of contents feature included in Minimal
+Mistakes is dependent on the Kramdown processor, and therefore will not
+work with Pandoc. You will need to generate a table of contents manually
+by following [these instructions].
+
+[these instructions]: https://mmistakes.github.io/minimal-mistakes/docs/navigation/#custom-sidebar-navigation-menu
 
 ## License
 
