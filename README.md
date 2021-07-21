@@ -104,6 +104,32 @@ And then execute:
 > probably fine for you, but if it's not, feel free to make a PR that allows
 > opting out.
 
+## Sidenotes
+
+By default, sidenotes and margin notes are collapsed in narrow screens
+`@media(max-width: 768px)` as well as in regular pages. These notes can
+then be expanded by clicking on the target symbol &#8853; placeholder.
+See the [Tufte CSS] documentation for further details.
+
+Sidenotes and margin notes will be visible by default when the screen is
+wide enough, **but only if** the `wide` class is used in the page's YAML
+front matter:
+
+```
+---
+classes: wide
+---
+```
+
+You can enable this by default for all pages, or for some pages (say,
+for the pages that use the `single` layout), by adding `classes: wide`
+to the `defaults` section in the `_config.yml` file. See the Minimal
+Mistakes documentation on [layouts and page classes] and on
+[front matter defaults].
+
+[layouts and page classes]: https://mmistakes.github.io/minimal-mistakes/docs/layouts/
+[front matter defaults]: https://mmistakes.github.io/minimal-mistakes/docs/configuration/#front-matter-defaults
+
 ### Customization
 
 See the [Minimal Mistakes Stylesheets] documentation to find out where
