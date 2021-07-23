@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "tufte-crossref-jekyll"
-  spec.version       = "0.12.0.1"
+  spec.version       = "0.12.0.2"
   spec.authors       = ["Jake Zimmerman", "Pedro Palazzo"]
   spec.email         = ["zimmerman.jake@gmail.com", "pedro.palazzo@gmail.com"]
 
