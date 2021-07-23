@@ -1,24 +1,40 @@
-details { @extend section;
-          summary > p { display: inline; }
-        }
+details {
+  @extend section;
+  summary > p { display: inline; }
+}
 
-dt, dt > a, h5, h6 { @extend .newthought;
-                     clear: left;
-                     font-style: normal;
-                     font-weight: 400; }
+dt,
+dt > a,
+h5,
+h6 {
+  @extend .newthought;
+  clear: left;
+  font-style: normal;
+  font-weight: 400;
+}
 
 // Run-in definition lists and headings
-article > dl, section > dl { clear: left;
-                             font-size: 1.4rem;
-                             line-height: 2rem; }
+article > dl,
+section > dl {
+  clear: left;
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
 
-dt, h5, h6 { float: left;
-             margin: 0 1.4rem 0 0;
-             padding: 0; }
+dt,
+h5,
+h6 {
+  float: left;
+  margin: 0 1.4rem 0 0;
+  padding: 0;
+}
 
 // Tabular numbers for list items, small-caps Roman numerals
-article ol, article ul {
-  & > li::marker { font-variant: tabular-nums oldstyle-nums all-small-caps; }
+article ol,
+article ul {
+  & > li::marker {
+  font-variant: tabular-nums oldstyle-nums all-small-caps;
+  }
 }
 
 // Fix width of dl inside li
@@ -32,7 +48,6 @@ li > dl {
 p~figure > img.marginnote, div.notes~figure > img.marginnote { margin-top: 1.6rem; }
 
 // Dark colorscheme with a softer background
-// TODO: switch code to Solarized-dark when in dark mode
 @media (prefers-color-scheme: dark) {
   body { color: #fffff8;
          background-color: lighten(#111, 10%); }
