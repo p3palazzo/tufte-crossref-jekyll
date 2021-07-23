@@ -29,21 +29,25 @@ h1 {
 }
 
 h2 {
+    clear: both;
     font-style: italic;
     font-weight: 400;
     margin-top: 2.1rem;
     margin-bottom: 1.4rem;
     font-size: 2.2rem;
     line-height: 1;
+    em { font-style: normal; }
 }
 
 h3 {
+    clear: both;
     font-style: italic;
     font-weight: 400;
     font-size: 1.7rem;
     margin-top: 2rem;
     margin-bottom: 1.4rem;
     line-height: 1;
+    em { font-style: normal; }
 }
 
 hr {
@@ -63,6 +67,7 @@ p.subtitle {
     font-size: 1.8rem;
     display: block;
     line-height: 1;
+    em { font-style: normal; }
 }
 
 .numeral {
@@ -110,6 +115,7 @@ div.epigraph > blockquote {
 div.epigraph > blockquote,
 div.epigraph > blockquote > p {
     font-style: italic;
+    em { font-style: normal; }
 }
 
 div.epigraph > blockquote > footer {
@@ -138,7 +144,8 @@ blockquote footer {
 
 section > p,
 section > footer,
-section > table {
+section > table,
+section > div > table {
     width: 55%;
 }
 
@@ -150,10 +157,12 @@ section > ul {
     -webkit-padding-start: 5%;
 }
 
-dt:not(:first-child),
-li:not(:first-child) {
-    margin-top: 0.25rem;
-}
+/* Causes problems with run-in <dt>
+ *dt:not(:first-child),
+ *li:not(:first-child) {
+ *    margin-top: 0.25rem;
+ *}
+ */
 
 figure {
     padding: 0;
@@ -167,6 +176,12 @@ figure {
     margin: 0 0 3em 0;
 }
 
+// Fix for fullwidth images within Pandoc figures
+div.fullwidth > figure {
+  max-width: 100%;
+}
+
+.subfigures > p:last-of-type, // Support Pandoc-crossref subfigures
 figcaption {
     float: right;
     clear: right;
@@ -182,6 +197,9 @@ figcaption {
 figure.fullwidth figcaption {
     margin-right: 24%;
 }
+
+// Fix for Pandoc-crossref figcaptions in full-width figures
+div.fullwidth figcaption { max-width: 33%; }
 
 /* Links: replicate underline that clears descenders */
 a:link,
@@ -218,11 +236,51 @@ a:link::-moz-selection {
     background: #b4d5fe;
 }
 
-/* Sidenotes, margin notes, figures, captions */
+/******************************************************
+ * CSL styling taken from Tufte-CSS, not yet
+   implemented in Jekyll-Pandoc-Tufte.
+ */
+div.csl-bib-body {
+    width: 55%;
+    font-size: 1.4rem;
+    line-height: 2rem;
+}
+
+div.csl-entry {
+    clear: both;
+    margin-top: .5rem;
+}
+
+.hanging div.csl-entry {
+    margin-left: 2rem;
+    text-indent: -2rem;
+}
+
+div.csl-left-margin {
+    min-width: 2rem;
+    float: left;
+}
+
+div.csl-right-inline {
+    margin-left: 2rem;
+    padding-left: 1rem;
+}
+
+div.csl-indent {
+    margin-left: 2rem;
+}
+
+div.hanging-indent{
+    margin-left: 1.5rem;
+    text-indent: -1.5rem;
+}
+
+video,
 img {
     max-width: 100%;
 }
 
+/* Sidenotes, margin notes, figures, captions */
 .sidenote,
 .marginnote {
     float: right;
@@ -235,6 +293,12 @@ img {
     line-height: 1.3;
     vertical-align: baseline;
     position: relative;
+}
+
+// Fix for Pandoc-generated figcaption in margin images
+img.marginnote~figcaption {
+  margin-right: -60%;
+  max-width: 50%;
 }
 
 .sidenote-number {
@@ -383,6 +447,7 @@ label.margin-toggle:not(.sidenote-number) {
     }
 
     figcaption,
+    img.marginnote~figcaption,
     figure.fullwidth figcaption {
         margin-right: 0%;
         max-width: none;
