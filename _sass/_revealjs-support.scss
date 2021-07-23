@@ -13,30 +13,42 @@ h3.unlisted { display: none; }
 // Uncomment this line if you want to suppress it.
 // hr { display: none; }
 
+// Fix width of incremental Reveal.js sections
 // Align Reveal.js presenter notes as regular paragraphs.
 // Alternatively, uncomment the second line to hide them completely.
-div.notes { @extend section;
-            //display: none !important;
-          }
+div.incremental,
+div.notes {
+  @extend section;
+  // &.notes { display: none !important; }
+}
 
 // Right now .r-stack figures are hard-coded to show up
 // in two equal columns.
-div.r-stack > figure { float: left;
-                       max-width: 50%;
-                       & > figcaption { float: none;
-                                        max-width: 100%;
-                                        width: 100%; }
-                     }
+div.r-stack > figure {
+  float: left;
+  max-width: 50%;
+  & > figcaption {
+    float: none;
+    max-width: 100%;
+    width: 100%;
+  }
+}
 
 // Support Pandoc columns for reveal.js
-.columns { @extend .fullwidth;
-           width: 100%;
-           &.subfigures > p:last-of-type { max-width: 33%;
-                                           margin-bottom: 1.1rem; }
-         }
-.column  { float: left;
-           figure { margin-bottom: 1em;
-                    max-width: 90%;
-                    figcaption { float: right; }
-                  }
-         }
+.columns {
+  @extend .fullwidth;
+  width: 100%;
+  &.subfigures > p:last-of-type {
+    max-width: 33%;
+   margin-bottom: 1.1rem;
+ }
+}
+
+.column  {
+  float: left;
+  figure {
+    margin-bottom: 1em;
+    max-width: 90%;
+    figcaption { float: right; }
+  }
+}
