@@ -18,13 +18,15 @@ For a demo, see <https://jez.io/talks/>.
 
 ## Features
 
-This version introduces some changes to the style sheets that are meant
-to provide support for using **tufte-pandoc-css** alongside
-[Pandoc-crossref].
+This fork introduces some changes to the style sheets that are meant to
+provide support for using **tufte-pandoc-jekyll** alongside
+[Pandoc-crossref] and [Reveal.js]. Otherwise, this project attempts to
+match the style, features, and version numbering of
+**tufte-pandoc-jekyll**. In short what it does is to:
 
 [Pandoc-crossref]: https://lierdakil.github.io/pandoc-crossref/
 
-<!--[Reveal.js]: https://revealjs.com-->
+[Reveal.js]: https://revealjs.com
 
 ### Figures, captions, and borders ###
 
@@ -126,7 +128,7 @@ Or install it yourself as:
 
 ## Usage
 
-> Note: while `tufte-pandoc-css` optionally includes the Solarized Light
+> Note: while `tufte-pandoc-css` optionally includes the Solarized Light/Dark
 > colorscheme, it's enabled by default here, with no easy way to opt-out. This is
 > probably fine for you, but if it's not, feel free to make a PR that allows
 > opting out.
