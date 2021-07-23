@@ -170,7 +170,6 @@ section > ul {
  *}
  */
 
-div.subfigures,
 figure {
     padding: 0;
     border: 0;
@@ -183,12 +182,25 @@ figure {
     margin: 0 0 3em 0;
 }
 
-// Fix for fullwidth images within Pandoc figures
+// Subfigures need to share width and margin features of regular
+// figures, but zero-padding them leads to unexpected results.
+div.subfigures {
+    max-width: 55%;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    margin: 0 0 3em 0;
+}
+
+// Fix for fullwidth images within Pandoc-crossref figures and subfigures
+div.fullwidth.subfigures {
+  max-width: 90%;
+}
+
 div.fullwidth > figure {
   max-width: 100%;
 }
 
-.subfigures > p:last-of-type, // Support Pandoc-crossref subfigures
+div.subfigures > p:last-of-type, // Support Pandoc-crossref subfigures
 figcaption {
     float: right;
     clear: right;
@@ -206,8 +218,10 @@ figure.fullwidth figcaption {
 }
 
 // Fix for Pandoc-crossref figcaptions in full-width figures
-.subfigures > p:last-of-type, // Support Pandoc-crossref subfigures
-div.fullwidth figcaption { max-width: 33%; }
+div.fullwidth.subfigures > p:last-of-type, // Support Pandoc-crossref subfigures
+div.fullwidth figcaption {
+  max-width: 33%;
+}
 
 /* Links: replicate underline that clears descenders */
 a:link,
@@ -333,12 +347,14 @@ img.marginnote~figcaption {
     top: -0.5rem;
 }
 
-blockquote .sidenote,
-blockquote .marginnote {
-    margin-right: -82%;
-    min-width: 59%;
-    text-align: left;
-}
+/* This causes the sidenotes to be misaligned
+ *blockquote .sidenote,
+ *blockquote .marginnote {
+ *    margin-right: -82%;
+ *    min-width: 59%;
+ *    text-align: left;
+ *}
+ */
 
 div.fullwidth,
 table.fullwidth {
