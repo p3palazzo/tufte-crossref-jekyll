@@ -50,12 +50,6 @@ h3 {
     em { font-style: normal; }
 }
 
-h4,
-h5,
-h6 {
-  font-size: 1.4rem;
-}
-
 hr {
     display: block;
     height: 1px;
@@ -163,12 +157,10 @@ section > ul {
     -webkit-padding-start: 5%;
 }
 
-/* Causes problems with run-in <dt>
- *dt:not(:first-child),
- *li:not(:first-child) {
- *    margin-top: 0.25rem;
- *}
- */
+dt:not(:first-child),
+li:not(:first-child) {
+    margin-top: 0.25rem;
+}
 
 figure {
     padding: 0;
@@ -182,25 +174,6 @@ figure {
     margin: 0 0 3em 0;
 }
 
-// Subfigures need to share width and margin features of regular
-// figures, but zero-padding them leads to unexpected results.
-div.subfigures {
-    max-width: 55%;
-    -webkit-margin-start: 0;
-    -webkit-margin-end: 0;
-    margin: 0 0 3em 0;
-}
-
-// Fix for fullwidth images within Pandoc-crossref figures and subfigures
-div.fullwidth.subfigures {
-  max-width: 90%;
-}
-
-div.fullwidth > figure {
-  max-width: 100%;
-}
-
-div.subfigures > p:last-of-type, // Support Pandoc-crossref subfigures
 figcaption {
     float: right;
     clear: right;
@@ -215,12 +188,6 @@ figcaption {
 
 figure.fullwidth figcaption {
     margin-right: 24%;
-}
-
-// Fix for Pandoc-crossref figcaptions in full-width figures
-div.fullwidth.subfigures > p:last-of-type, // Support Pandoc-crossref subfigures
-div.fullwidth figcaption {
-  max-width: 33%;
 }
 
 /* Links: replicate underline that clears descenders */
@@ -317,12 +284,6 @@ img {
     position: relative;
 }
 
-// Fix for Pandoc-generated figcaption in margin images
-img.marginnote~figcaption {
-  margin-right: -60%;
-  max-width: 50%;
-}
-
 .sidenote-number {
     counter-increment: sidenote-counter;
 }
@@ -347,14 +308,12 @@ img.marginnote~figcaption {
     top: -0.5rem;
 }
 
-/* This causes the sidenotes to be misaligned
- *blockquote .sidenote,
- *blockquote .marginnote {
- *    margin-right: -82%;
- *    min-width: 59%;
- *    text-align: left;
- *}
- */
+blockquote .sidenote,
+blockquote .marginnote {
+    margin-right: -82%;
+    min-width: 59%;
+    text-align: left;
+}
 
 div.fullwidth,
 table.fullwidth {
